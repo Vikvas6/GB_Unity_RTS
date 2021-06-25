@@ -22,11 +22,6 @@ public class BottomLeftPresenter : MonoBehaviour
     
     private void onSelected(ISelectable selected)
     {
-        if (_selected != null)
-        {
-            _selected.UnSelectObject();
-            _selected = null;
-        }
         
         _selectedImage.enabled = selected != null;
         _healthSlider.gameObject.SetActive(selected != null);
@@ -34,9 +29,6 @@ public class BottomLeftPresenter : MonoBehaviour
 
         if (selected != null)
         {
-            _selected = selected;
-            selected.SelectObject();
-            
             _selectedImage.sprite = selected.Icon;
             _text.text = $"{selected.Health}/{selected.MaxHealth}";
             _healthSlider.minValue = 0;
