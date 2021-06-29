@@ -2,11 +2,12 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
+public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable, IAttackable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
     public Sprite Icon => _icon;
+    public Transform PivotPoint => gameObject.transform;
 
     [SerializeField] private Transform _unitsParent;
     
