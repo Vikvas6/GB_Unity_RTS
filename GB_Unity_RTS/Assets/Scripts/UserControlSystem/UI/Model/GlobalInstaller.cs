@@ -16,5 +16,8 @@ public class GlobalInstaller : ScriptableObjectInstaller<GlobalInstaller>
         Container.Bind<Vector3Value>().FromInstance(_vector3Value);
         Container.Bind<AttackableValue>().FromInstance(_attackableValue);
         Container.Bind<SelectableValue>().FromInstance(_selectableValue);
+
+        Container.Bind<IAwaitable<IAttackable>>().FromInstance(_attackableValue);
+        Container.Bind<IAwaitable<Vector3>>().FromInstance(_vector3Value);
     }
 }
