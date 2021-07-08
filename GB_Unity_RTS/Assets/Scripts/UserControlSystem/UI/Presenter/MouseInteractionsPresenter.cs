@@ -1,4 +1,5 @@
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,44 +19,43 @@ public class MouseInteractionsPresenter : MonoBehaviour
     private void Start()
     {
         _groundPlane = new Plane(_groundTransform.up, 0);
+
+        var baseStream = Observable.EveryUpdate().Where(_ => !_eventSystem.IsPointerOverGameObject());
+
+        var lmbStream = baseStream.Where(_ => Input.GetMouseButtonUp(0));
+        var rmbStream = baseStream.Where(_ => Input.GetMouseButtonUp(1));
+
+        lmbStream.Subscribe(_ => lmbHandler());
+        rmbStream.Subscribe(_ => rmbHandler());
     }
 
-    private void Update()
+    private void lmbHandler()
     {
-        if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-        {
-            return;
-        }
-
-        if (_eventSystem.IsPointerOverGameObject())
-        {
-            return;
-        }
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         var hits = Physics.RaycastAll(ray);
-        if (Input.GetMouseButtonUp(0))
+        if (hits.Length == 0)
         {
-            if (hits.Length == 0)
-            {
-                return;
-            }
-
-            var selectable = SelectHit<ISelectable>(hits);
-            if (selectable != null)
-            {
-                _selectedObject.SetValue(selectable);
-            }
+            return;
         }
-        else
+
+        var selectable = SelectHit<ISelectable>(hits);
+        if (selectable != null)
         {
-            var attackable = SelectHit<IAttackable>(hits);
-            if (attackable != null)
-            {
-                _attackablesRMB.SetValue(attackable);
-            } else if (_groundPlane.Raycast(ray, out var enter))
-            {
-                _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
-            }
+            _selectedObject.SetValue(selectable);
+        }
+    }
+
+    private void rmbHandler()
+    {
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
+        var hits = Physics.RaycastAll(ray);
+        var attackable = SelectHit<IAttackable>(hits);
+        if (attackable != null)
+        {
+            _attackablesRMB.SetValue(attackable);
+        } else if (_groundPlane.Raycast(ray, out var enter))
+        {
+            _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
         }
     }
 

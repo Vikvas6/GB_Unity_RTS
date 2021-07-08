@@ -1,5 +1,7 @@
+using System;
+
 public interface IHealth
 {
-    float Health { get; }
+    IObservable<float> Health { get; }
     float MaxHealth { get; }
 }
