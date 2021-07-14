@@ -1974,6 +1974,9 @@ GameObject:
   - component: {fileID: 3099499652777554364}
   - component: {fileID: 3099499652777554367}
   - component: {fileID: -3978221415325059653}
+  - component: {fileID: -4509844451021984403}
+  - component: {fileID: 9145407239695153593}
+  - component: {fileID: 5993318801378517184}
   m_Layer: 0
   m_Name: Chomper
   m_TagString: Untagged
@@ -2084,8 +2087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 3099499652777554367}
   _animator: {fileID: 3099499652843210966}
-  _stopCommandExecutor: {fileID: 3099499652777554354}
-  _stop: {fileID: -3978221415325059653}
 --- !u!114 &3099499652777554364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2136,6 +2137,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 3099499652777554367}
+  _collisionDetector: {fileID: 5261255310642582734}
+  _throttleFrames: 60
+  _continuityThreshold: 10
+--- !u!114 &-4509844451021984403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099499652852742932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e481623643867454b8881ea1190027f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9145407239695153593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099499652852742932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636e55e4636a74740a436d432162c95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5993318801378517184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099499652852742932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 9145407239695153593}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!1 &3099499652852742934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,6 +3463,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3099499654098557999}
   - component: {fileID: 3099499654098557998}
+  - component: {fileID: 784181595877776784}
+  - component: {fileID: 5261255310642582734}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -3451,3 +3499,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &784181595877776784
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099499654098557996}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &5261255310642582734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099499654098557996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7e64ae60b221744a59aaffd154b39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

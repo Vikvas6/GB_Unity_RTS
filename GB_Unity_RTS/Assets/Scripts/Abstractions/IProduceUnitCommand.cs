@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 
-public interface IProduceUnitCommand : ICommand
+public interface IProduceUnitCommand : ICommand, IIconHolder
 {
+    float ProductionTime { get; }
     GameObject UnitPrefab { get; }
+    string UnitName { get; }
 }
 
 public interface IAttackCommand : ICommand
@@ -26,3 +27,8 @@ public interface IPatrolCommand : ICommand
 public interface IStopCommand : ICommand
 {
 }
+
+public interface ISetDestinationCommand : ICommand
+{
+    Vector3 Destination { get; }
+} 

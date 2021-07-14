@@ -9,7 +9,7 @@ public class PatrolCommandExecutor : CommandExecutorBase<IPatrolCommand>
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Animator _animator;
     
-    public override void ExecuteSpecificCommand(IPatrolCommand command)
+    public override async Task ExecuteSpecificCommand(IPatrolCommand command)
     {
         Patrol(command.From, command.To);
     }

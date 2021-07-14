@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 
 
-public class MainUnit : MonoBehaviour, ISelectable, IAttackable
+public class MainUnit : MonoBehaviour, ISelectable, IAttackable, IObstacle
 {
     public IObservable<float> Health => _reactiveHealth;
     public float MaxHealth => _maxHealth;
