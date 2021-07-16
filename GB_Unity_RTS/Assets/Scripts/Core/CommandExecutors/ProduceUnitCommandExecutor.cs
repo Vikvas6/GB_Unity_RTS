@@ -28,7 +28,11 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
         if (innerTask.TimeLeft <= 0)
         {
             removeTaskAtIndex(0);
+            
             var instance = _diContainer.InstantiatePrefab(innerTask.UnitPrefab, transform.position, Quaternion.identity, _unitsParent);
+            var factionMember = instance.GetComponent<FactionMember>();
+            factionMember.SetFaction(GetComponent<FactionMember>().FactionId);
+
             var queue = instance.GetComponent<ICommandsQueue>();
             var mainBuilding = GetComponent<MainBuilding>();
             queue.EnqueueCommand(new MoveCommand(mainBuilding.Destination));

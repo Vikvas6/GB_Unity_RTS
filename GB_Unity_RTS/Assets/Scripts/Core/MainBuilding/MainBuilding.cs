@@ -14,6 +14,7 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable, IObstacle
     
     public Sprite Icon => _icon;
     public IObservable<float> Health => _reactiveHealth;
+    public float HealthFloat => _reactiveHealth.Value;
     public float MaxHealth => _maxHealth;
     public Transform PivotPoint => gameObject.transform;
     
@@ -25,4 +26,16 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable, IObstacle
         Destination = gameObject.transform.position + gameObject.transform.forward * 4;
     }
 
+    public void RecieveDamage(int amount)
+    {
+        if (_reactiveHealth.Value <= 0)
+        {
+            return;
+        }
+        _reactiveHealth.Value -= amount;
+        if (_reactiveHealth.Value <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
