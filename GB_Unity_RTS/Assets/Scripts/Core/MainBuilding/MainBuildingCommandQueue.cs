@@ -6,7 +6,7 @@ public class MainBuildingCommandQueue : MonoBehaviour, ICommandsQueue
 {
     [Inject] CommandExecutorBase<IProduceUnitCommand> _produceUnitCommandExecutor;
     [Inject] CommandExecutorBase<ISetDestinationCommand> _setDestinationCommandExecutor;
-
+    public ICommand CurrentCommand => default;
     public void Clear() { }
 
     public async void EnqueueCommand(object command)

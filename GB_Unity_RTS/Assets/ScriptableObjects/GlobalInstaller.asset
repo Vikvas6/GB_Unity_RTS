@@ -17,3 +17,4 @@ MonoBehaviour:
   _attackableValue: {fileID: 11400000, guid: f26b7822c0217bf4fae96b6b78cd04ae, type: 2}
   _selectableValue: {fileID: 11400000, guid: be33798f9b9ca684d9f724d0e5943026, type: 2}
   _chomperSprite: {fileID: 21300000, guid: 02d65e0a498cafc418b97c1744c9b605, type: 3}
+  _grenadierSprite: {fileID: 21300000, guid: a38ef499475f9dc43a971d82a7e68569, type: 3}

@@ -14,4 +14,8 @@ public abstract class CommandExecutorBase<T> : MonoBehaviour, ICommandExecutor<T
     }
 
     public abstract Task ExecuteSpecificCommand(T command);
+    public virtual int GetCommandSubType()
+    {
+        return 0;
+    }
 }

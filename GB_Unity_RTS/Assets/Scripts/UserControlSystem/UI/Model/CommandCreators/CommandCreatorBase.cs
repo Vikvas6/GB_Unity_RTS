@@ -4,6 +4,7 @@ public abstract class CommandCreatorBase<T> where T : class,ICommand
 {
     public ICommandExecutor ProcessCommandExecutor(ICommandExecutor commandExecutor, Action<T> callback)
     {
+        CommandSubType = commandExecutor.GetCommandSubType();
         var classSpecificExecutor = commandExecutor as ICommandExecutor<T>;
         if (classSpecificExecutor != null)
         {
@@ -15,4 +16,6 @@ public abstract class CommandCreatorBase<T> where T : class,ICommand
     protected abstract void classSpecificCommandCreation(Action<T> creationCallback);
 
     public virtual void ProcessCancel() { }
+
+    protected int CommandSubType = 0;
 }

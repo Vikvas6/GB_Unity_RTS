@@ -25,5 +25,7 @@ public class UiModelInstaller : MonoInstaller
         
         Container.Bind<float>().WithId("Chomper").FromInstance(5f);
         Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
+        Container.Bind<float>().WithId("Grenadier").FromInstance(25f);
+        Container.Bind<string>().WithId("Grenadier").FromInstance("Grenadier");
     }
 }

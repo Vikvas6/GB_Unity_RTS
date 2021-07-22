@@ -8,7 +8,19 @@ public class ProduceUnitCommandCommandCreator : CommandCreatorBase<IProduceUnitC
 
     protected override void classSpecificCommandCreation(Action<IProduceUnitCommand> creationCallback)
     {
-        var produceUnitCommand = _context.Inject(new ProduceUnitCommandHeir());
+        IProduceUnitCommand command;
+        if (CommandSubType == 0)
+        {
+            command = new ProduceUnitCommand();
+        } else if (CommandSubType == 1)
+        {
+            command = new GrenadierProduceUnitCommand();
+        }
+        else
+        {
+            command = new ProduceUnitCommand();
+        }
+        var produceUnitCommand = _context.Inject(command);
         _diContainer.Inject(produceUnitCommand);
         creationCallback?.Invoke(produceUnitCommand);
     }

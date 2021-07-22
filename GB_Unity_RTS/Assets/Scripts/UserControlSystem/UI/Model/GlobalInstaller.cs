@@ -12,6 +12,7 @@ public class GlobalInstaller : ScriptableObjectInstaller<GlobalInstaller>
     [SerializeField] private AttackableValue _attackableValue;
     [SerializeField] private SelectableValue _selectableValue;
     [SerializeField] private Sprite _chomperSprite;
+    [SerializeField] private Sprite _grenadierSprite;
     
     public override void InstallBindings()
     {
@@ -21,6 +22,7 @@ public class GlobalInstaller : ScriptableObjectInstaller<GlobalInstaller>
         Container.Bind<IAwaitable<Vector3>>().FromInstance(_vector3Value);
         
         Container.Bind<Sprite>().WithId("Chomper").FromInstance(_chomperSprite);
+        Container.Bind<Sprite>().WithId("Grenadier").FromInstance(_grenadierSprite);
         Container.Bind<IObservable<ISelectable>>().FromInstance(_selectableValue);
     }
 }

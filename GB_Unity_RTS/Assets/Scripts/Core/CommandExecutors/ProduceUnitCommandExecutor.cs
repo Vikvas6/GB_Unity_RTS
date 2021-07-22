@@ -11,6 +11,7 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
 
     [SerializeField] private Transform _unitsParent;
     [SerializeField] private int _maximumUnitsInQueue = 6;
+    [SerializeField] private int _unitSubType = 0;
 
     private ReactiveCollection<IUnitProductionTask> _queue = new ReactiveCollection<IUnitProductionTask>();
 
@@ -57,5 +58,10 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
             _queue.Add(new UnitProductionTask(command.ProductionTime, command.Icon, command.UnitPrefab,
                 command.UnitName));
         }
+    }
+
+    public override int GetCommandSubType()
+    {
+        return _unitSubType;
     }
 }

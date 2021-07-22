@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 
 
-public class MainUnit : MonoBehaviour, ISelectable, IAttackable, IObstacle, IDamageDealer
+public class MainUnit : MonoBehaviour, ISelectable, IAttackable, IObstacle, IDamageDealer, IAutomaticAttacker
 {
     public IObservable<float> Health => _reactiveHealth;
     public float HealthFloat => _reactiveHealth.Value;
@@ -25,6 +25,7 @@ public class MainUnit : MonoBehaviour, ISelectable, IAttackable, IObstacle, IDam
 
     public void Start()
     {
+        _health = _maxHealth;
         _reactiveHealth = new ReactiveProperty<float>(_health);
     }
     
@@ -47,4 +48,7 @@ public class MainUnit : MonoBehaviour, ISelectable, IAttackable, IObstacle, IDam
         await _stopCommand.ExecuteSpecificCommand(new StopCommand());
         Destroy(gameObject);
     }
+    
+    public float VisionRadius => _visionRadius;
+    [SerializeField] private float _visionRadius = 8f;
 }
